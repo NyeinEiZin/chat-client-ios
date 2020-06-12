@@ -10,13 +10,21 @@ import Foundation
 
 class Message {
     var userName: String
-    var previousUserName: String?
     var message: String
-    var isMe: Bool = false
+    var device: String
+    var previousMessage: Message?
     
-    init(userName: String, message: String, previousUserName: String? = nil) {
+    init(userName: String, message: String, device: String) {
         self.userName = userName
         self.message = message
-        self.previousUserName = previousUserName
+        self.device = device
+    }
+    
+    func setDefaultPreviousMessage() {
+        self.previousMessage = Message(userName: "\(userName)-", message: "", device: "other device")
+    }
+    
+    func shouldHideUsername() -> Bool {
+        return userName == previousMessage?.userName && device == previousMessage?.device
     }
 }

@@ -50,9 +50,14 @@ class ChatViewController: UIViewController, UITextFieldDelegate {
     
     func sendMessage(text: String) {
         self.socket.emit("new message", text)
-        let previousUserName = messageArray.count == 0 ? nil : messageArray[0].userName
-        let message = Message(userName: myName, message: textField.text!, previousUserName: previousUserName)
-        message.isMe = true
+        
+        let message = Message(userName: myName, message: textField.text!, device: "this device")
+        if (messageArray.count > 0) {
+            message.previousMessage = messageArray[0]
+        } else {
+            message.setDefaultPreviousMessage()
+        }
+        
         self.messageArray.insert(message, at: 0)
         tableView.reloadData()
         textField.text = ""
@@ -73,10 +78,14 @@ class ChatViewController: UIViewController, UITextFieldDelegate {
         
         self.socket.on("new message") { data,_ in
             let responseMessage = data[0] as! Dictionary<String, String>
-            let previousUserName = self.messageArray.count == 0 ? nil : self.messageArray[0].userName
-            let message = Message(
-            userName: responseMessage["username"]!, message: responseMessage["message"]!, previousUserName: previousUserName)
-            message.isMe = false
+            
+            let message = Message(userName: responseMessage["username"]!, message: responseMessage["message"]!, device: "other device")
+            if (self.messageArray.count > 0) {
+                message.previousMessage = self.messageArray[0]
+            } else {
+                message.setDefaultPreviousMessage()
+            }
+            
             self.messageArray.insert(message, at: 0)
             self.tableView.reloadData()
         }
@@ -99,10 +108,10 @@ extension ChatViewController: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let currentMessage = messageArray[indexPath.row]
-        if !currentMessage.isMe {
+        if currentMessage.device != "this device" {
             let cell = tableView.dequeueReusableCell(withIdentifier: "receivedMessageCell", for: indexPath) as! ReceivedMessageCell
             cell.userName.text = currentMessage.userName
-            cell.userName.isHidden = currentMessage.userName == currentMessage.previousUserName
+            cell.userName.isHidden = currentMessage.shouldHideUsername()
 //            cell.userName.heightAnchor.constraint(equalToConstant: cell.userName.isHidden ? 0.0 : 15.0).isActive = true
             cell.message.text = currentMessage.message
             cell.contentView.transform = CGAffineTransform(scaleX: 1, y: -1)
@@ -111,7 +120,7 @@ extension ChatViewController: UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "sendMessageCell", for: indexPath) as! SendMessageCell
         cell.message.text = currentMessage.message
         cell.userName.text = currentMessage.userName
-        cell.userName.isHidden = currentMessage.userName == currentMessage.previousUserName
+        cell.userName.isHidden = currentMessage.shouldHideUsername()
 //        cell.userName.heightAnchor.constraint(equalToConstant: cell.userName.isHidden ? 0.0 : 15.0).isActive = true
         cell.contentView.transform = CGAffineTransform(scaleX: 1, y: -1)
         return cell
