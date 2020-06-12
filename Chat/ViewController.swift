@@ -7,14 +7,30 @@
 //
 
 import UIKit
+import SocketIO
 
 class ViewController: UIViewController {
 
+    @IBOutlet weak var nameTextField: UITextField!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        self.nameTextField.delegate = self
+        self.nameTextField.becomeFirstResponder()
     }
 
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        var chatVC = segue.destination as! ChatViewController
+        chatVC.myName = nameTextField.text!
+    }
+}
 
+extension ViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        
+        performSegue(withIdentifier: "chat", sender: self)
+        return true
+    }
 }
 
