@@ -103,7 +103,6 @@ extension ChatViewController: UITableViewDelegate, UITableViewDataSource {
             let cell = tableView.dequeueReusableCell(withIdentifier: "receivedMessageCell", for: indexPath) as! ReceivedMessageCell
             cell.userName.text = currentMessage.userName
             cell.userName.isHidden = currentMessage.userName == currentMessage.previousUserName
-            print("received cell \(cell.userName.isHidden)")
 //            cell.userName.heightAnchor.constraint(equalToConstant: cell.userName.isHidden ? 0.0 : 15.0).isActive = true
             cell.message.text = currentMessage.message
             cell.contentView.transform = CGAffineTransform(scaleX: 1, y: -1)
@@ -113,7 +112,6 @@ extension ChatViewController: UITableViewDelegate, UITableViewDataSource {
         cell.message.text = currentMessage.message
         cell.userName.text = currentMessage.userName
         cell.userName.isHidden = currentMessage.userName == currentMessage.previousUserName
-        print("send cell \(cell.userName.isHidden)")
 //        cell.userName.heightAnchor.constraint(equalToConstant: cell.userName.isHidden ? 0.0 : 15.0).isActive = true
         cell.contentView.transform = CGAffineTransform(scaleX: 1, y: -1)
         return cell

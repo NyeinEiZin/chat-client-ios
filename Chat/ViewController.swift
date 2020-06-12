@@ -21,7 +21,7 @@ class ViewController: UIViewController {
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        var chatVC = segue.destination as! ChatViewController
+        let chatVC = segue.destination as! ChatViewController
         chatVC.myName = nameTextField.text!
     }
 }
