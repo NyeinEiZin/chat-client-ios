@@ -60,14 +60,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nS0-wQ-co7">
-                                <rect key="frame" x="0.0" y="88" width="414" height="0.0"/>
-                                <fontDescription key="fontDescription" name="NotoSansMyanmar-Regular" family="Noto Sans Myanmar" pointSize="14"/>
-                                <color key="textColor" red="0.36078431370000003" green="0.4039215686" blue="0.45098039220000002" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="XgU-hL-d8Y">
-                                <rect key="frame" x="0.0" y="118" width="414" height="644"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="674"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="receivedMessageCell" rowHeight="80" id="aKI-S6-aaJ" customClass="ReceivedMessageCell" customModule="Chat" customModuleProvider="target">
@@ -174,7 +168,14 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Oh4-gj-gAA">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nS0-wQ-co7">
+                                <rect key="frame" x="0.0" y="88" width="414" height="0.0"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" name="NotoSansMyanmar-Regular" family="Noto Sans Myanmar" pointSize="14"/>
+                                <color key="textColor" red="0.36078431370000003" green="0.4039215686" blue="0.45098039220000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Send a message" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Oh4-gj-gAA">
                                 <rect key="frame" x="16" y="778" width="306" height="40"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
@@ -208,7 +209,7 @@
                             <constraint firstItem="nS0-wQ-co7" firstAttribute="top" secondItem="pjr-ZN-6Sr" secondAttribute="top" id="g9d-u6-SfG"/>
                             <constraint firstItem="w97-Bn-GIW" firstAttribute="leading" secondItem="Oh4-gj-gAA" secondAttribute="trailing" constant="16" id="luP-pN-e6S"/>
                             <constraint firstAttribute="trailing" secondItem="nS0-wQ-co7" secondAttribute="trailing" id="uDM-Rh-q1o"/>
-                            <constraint firstItem="XgU-hL-d8Y" firstAttribute="top" secondItem="pjr-ZN-6Sr" secondAttribute="top" constant="30" id="zq5-QW-fh5"/>
+                            <constraint firstItem="XgU-hL-d8Y" firstAttribute="top" secondItem="pjr-ZN-6Sr" secondAttribute="top" id="zq5-QW-fh5"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="pjr-ZN-6Sr"/>
                     </view>

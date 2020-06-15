@@ -41,11 +41,19 @@ class ChatViewController: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func sendMessage(_ sender: Any) {
-        sendMessage(text: textField.text!)
+        let textFieldText = textField.text ?? ""
+        
+        if textFieldText.trimmingCharacters(in: .whitespaces).count > 0 {
+            sendMessage(text: textFieldText)
+        }
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        sendMessage(text: textField.text!)
+        let textFieldText = textField.text ?? ""
+        
+        if textFieldText.trimmingCharacters(in: .whitespaces).count > 0 {
+            sendMessage(text: textFieldText)
+        }
         return true
     }
     
