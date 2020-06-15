@@ -13,6 +13,7 @@ class ChatViewController: UIViewController, UITextFieldDelegate {
 
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var textField: UITextField!
+    @IBOutlet weak var numUsers: UILabel!
     var messageArray: [Message] = []
     var myName: String!
     let manager = SocketManager(socketURL: URL(string: "https://socketio-chat-h9jt.herokuapp.com")!)
@@ -94,6 +95,7 @@ class ChatViewController: UIViewController, UITextFieldDelegate {
     func onUserJoinedOrLeft(data: [Any]) {
         let responseData = data[0] as! Dictionary<String, Any>
         self.userCount = responseData["numUsers"] as! Int
+        self.numUsers.text = "there are \(self.userCount) participants"
     }
 }
 
