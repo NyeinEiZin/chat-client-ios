@@ -113,7 +113,6 @@
                                             <outlet property="message" destination="1hA-u3-Msn" id="BHk-Pf-x0X"/>
                                             <outlet property="messageView" destination="bZL-vm-R0w" id="Mo9-xA-cPB"/>
                                             <outlet property="userName" destination="NGY-Vc-T4W" id="xje-rf-LVf"/>
-                                            <outlet property="userNameHeight" destination="Bol-Kp-DwG" id="Vp6-pp-yfK"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="sendMessageCell" rowHeight="80" id="GJ7-lD-lnk" customClass="SendMessageCell" customModule="Chat" customModuleProvider="target">
@@ -165,7 +164,6 @@
                                             <outlet property="message" destination="QLg-zE-fdY" id="v8m-gy-SUI"/>
                                             <outlet property="messageView" destination="TSv-xn-G25" id="FKD-gc-KNB"/>
                                             <outlet property="userName" destination="vi1-A9-Wqd" id="W5m-Yj-MVf"/>
-                                            <outlet property="userNameHeight" destination="0TW-Lb-3lf" id="uhN-Hp-TUZ"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>

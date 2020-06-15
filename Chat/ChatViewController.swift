@@ -112,8 +112,9 @@ extension ChatViewController: UITableViewDelegate, UITableViewDataSource {
             let cell = tableView.dequeueReusableCell(withIdentifier: "receivedMessageCell", for: indexPath) as! ReceivedMessageCell
             cell.userName.text = currentMessage.userName
             cell.userName.isHidden = currentMessage.shouldHideUsername()
-//            cell.userName.heightAnchor.constraint(equalToConstant: cell.userName.isHidden ? 0.0 : 15.0).isActive = true
             cell.message.text = currentMessage.message
+            cell.userNameTopConstraint.isActive = cell.userName.isHidden ? true : false
+            cell.messageViewTopConstraint.isActive = cell.userName.isHidden ? true : false
             cell.contentView.transform = CGAffineTransform(scaleX: 1, y: -1)
             return cell
         }
@@ -121,7 +122,8 @@ extension ChatViewController: UITableViewDelegate, UITableViewDataSource {
         cell.message.text = currentMessage.message
         cell.userName.text = currentMessage.userName
         cell.userName.isHidden = currentMessage.shouldHideUsername()
-//        cell.userName.heightAnchor.constraint(equalToConstant: cell.userName.isHidden ? 0.0 : 15.0).isActive = true
+        cell.userNameTopConstraint.isActive = cell.userName.isHidden ? true : false
+        cell.messageViewTopConstraint.isActive = cell.userName.isHidden ? true : false
         cell.contentView.transform = CGAffineTransform(scaleX: 1, y: -1)
         return cell
     }
@@ -136,10 +138,13 @@ class ReceivedMessageCell: UITableViewCell {
     @IBOutlet weak var userName: UILabel!
     @IBOutlet weak var message: UILabel!
     @IBOutlet weak var messageView: UIView!
-    @IBOutlet weak var userNameHeight: NSLayoutConstraint!
+    var userNameTopConstraint: NSLayoutConstraint!
+    var messageViewTopConstraint: NSLayoutConstraint!
     
     override func awakeFromNib() {
         messageView.layer.cornerRadius = 20
+        self.userNameTopConstraint = self.userName.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: -23)
+        self.messageViewTopConstraint = self.messageView.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 8)
     }
 }
 
@@ -148,9 +153,12 @@ class SendMessageCell: UITableViewCell {
     @IBOutlet weak var userName: UILabel!
     @IBOutlet weak var message: UILabel!
     @IBOutlet weak var messageView: UIView!
-    @IBOutlet weak var userNameHeight: NSLayoutConstraint!
+    var userNameTopConstraint: NSLayoutConstraint!
+    var messageViewTopConstraint: NSLayoutConstraint!
     
     override func awakeFromNib() {
         messageView.layer.cornerRadius = 20
+        self.userNameTopConstraint = self.userName.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: -23)
+        self.messageViewTopConstraint = self.messageView.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 8)
     }
 }
